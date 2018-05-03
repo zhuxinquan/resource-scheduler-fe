@@ -1,0 +1,19 @@
+.logo {
+  width: 45px;
+  height: 45px;
+  background: url(../../assets/logo.png) no-repeat center 0;
+  background-size: 45px 45px;
+  margin: 0 45px 0 0;
+  float: left;
+}
+
+.header {
+  height: 45px;
+  line-height: 45px;
+  padding: 0px;
+}
+
+
+.Ip {
+  float: right;
+}
