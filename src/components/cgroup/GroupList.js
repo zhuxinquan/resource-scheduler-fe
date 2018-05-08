@@ -1,15 +1,13 @@
 import React from 'react';
-import Api from '../common/Api';
+import Api from '../../common/Api';
 import { notification } from 'antd';
-import { Row, Col } from 'antd';
 import { Card } from 'antd';
 import { Table } from 'antd';
-import SysInfo from './sysinfo/SysInfo';
 
 var $ = require('jquery');
 var _ = require('lodash');
 
-class Home extends React.Component {
+class GroupList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -54,20 +52,11 @@ class Home extends React.Component {
   };
   render() {
     return (
-      <Row gutter={10} style={{margin: '0 10px'}}>
-        <Col span={12}>
-          <Card title="Group列表" bordered={true}>
-            <Table rowKey={record => record.groupPath} columns={this.getColumns()} dataSource={this.state.groupInfo} />
-          </Card>
-        </Col>
-        <Col span={12}>
-          <Card title="系统状态" bordered={true}>
-            <SysInfo/>
-          </Card>
-        </Col>
-      </Row>
+      <Card title="Group列表" bordered={true}>
+        <Table rowKey={record => record.groupPath} columns={this.getColumns()} dataSource={this.state.groupInfo} />
+      </Card>
     );
   }
 }
 
-export default Home;
+export default GroupList;
