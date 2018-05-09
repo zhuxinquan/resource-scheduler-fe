@@ -33,7 +33,6 @@ class NewGroupFormCom extends React.Component {
             });
           }
         });
-        console.log('Received values of form: ', values);
       }
     });
   };
@@ -110,7 +109,7 @@ class NewCgroup extends React.Component {
     return (
       <Row gutter={0}>
         <Col span={18} offset={3}>
-          <Card title="新建Group" bordered={false}>
+          <Card title="新建Group" bordered={true}>
             <NewGroupForm />
           </Card>
         </Col>

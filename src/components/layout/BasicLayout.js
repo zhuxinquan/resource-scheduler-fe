@@ -11,18 +11,14 @@ import Mem from '../subsystem/Mem';
 import Blkio from '../subsystem/Blkio';
 import Cpuset from '../subsystem/Cpuset';
 import Devices from '../subsystem/Devices';
+import SysMonitor from '../sysinfo/SysMonitor';
+import Exec from '../exec/Exec';
 
 const SubMenu = Menu.SubMenu;
 const {Header, Content, Footer} = Layout;
 
-// const MenuMap = {
-//   "home": Home
-// };
 
 class BasicLayout extends React.Component {
-  constructor(props){
-    super(props);
-  }
   componentWillMount(){
     var ip = localStorage.getItem("ip");
     if (ip === "" || ip === null) {
@@ -82,26 +78,25 @@ class BasicLayout extends React.Component {
             onClick={this.handleChangeMenu}
             style={{lineHeight: '45px'}}
           >
-            <SubMenu title={<span><a href={'/'} style={{ color: 'rgb(170, 176, 183)' }} ><Icon type="home"/>主页</a></span>} />
+            <Menu.Item key={'home'} ><a href={'/'}><Icon type="home"/>主页</a></Menu.Item>
             <SubMenu title={<span><Icon type="menu-fold" />CGroup</span>}>
               <Menu.Item key="newCgroup"><a href={"/#/group/new"}>新建Group</a></Menu.Item>
               <Menu.Item key="cgroupList"><a href={"/#/group/list"}>Group列表</a></Menu.Item>
             </SubMenu>
-            <SubMenu title={<span><Icon type="menu-fold" />子系统</span>}>
+            <SubMenu title={<span><Icon type="tool" />子系统</span>}>
               <Menu.Item key="cpu"><a href={"/#/subsystem/cpu"}>Cpu</a></Menu.Item>
               <Menu.Item key="memory"><a href={"/#/subsystem/memory"}>Memory</a></Menu.Item>
               <Menu.Item key="blkio"><a href={"/#/subsystem/blkio"}>Blkio</a></Menu.Item>
               <Menu.Item key="cpuset"><a href={"/#/subsystem/cpuset"}>Cpuset</a></Menu.Item>
               <Menu.Item key="devices"><a href={"/#/subsystem/devices"}>Devices</a></Menu.Item>
-              {/*<Menu.Item key="freezer">Freezer</Menu.Item>*/}
-              {/*<Menu.Item key="cpuacct">Cpuacct</Menu.Item>*/}
             </SubMenu>
-            <Menu.Item key="dashboard"><Icon type="dashboard" />系统监控</Menu.Item>
+            <Menu.Item key="exec"><a href={'/#/exec'}><Icon type="codepen" />执行服务</a></Menu.Item>
+            <Menu.Item key="dashboard"><a href={'/#/sys/monitor'}><Icon type="dashboard" />系统监控</a></Menu.Item>
             <Menu.Item key="changIp" style={{float:'right'}}><Icon type="logout" />切换IP</Menu.Item>
           </Menu>
         </Header>
-        <Content style={{marginTop: '15px'}}>
-          <div style={{background: '#fff', padding: 15, minHeight: 500}}>
+        <Content>
+          <div style={{background: '#ECECEC', padding: 15}}>
             <Switch>
               <Route path="/" exact component={Home}/>
               <Route path="/group/new" exact component={NewGroup}/>
@@ -111,6 +106,8 @@ class BasicLayout extends React.Component {
               <Route path='/subsystem/blkio' exact component={Blkio}/>
               <Route path='/subsystem/cpuset' exact component={Cpuset}/>
               <Route path='/subsystem/devices' exact component={Devices}/>
+              <Route path='/sys/monitor' exact component={SysMonitor}/>
+              <Route path='/exec' exact component={Exec}/>
             </Switch>
           </div>
           <div>

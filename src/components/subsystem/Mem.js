@@ -1,19 +1,39 @@
 import React from 'react';
-import { Card, Col, Form, Row, Input, Tooltip, Icon, Button, Alert } from 'antd';
+import { Card, Col, Form, Row, Input, Tooltip, Icon, Button, Alert, Select } from 'antd';
 import Api from '../../common/Api';
 import { notification } from 'antd/lib/index';
 
 const FormItem = Form.Item;
 
 var $ = require('jquery');
+var _ = require('lodash');
 
 
 class MemCom extends React.Component {
-  state = {};
+  state = {
+    groupList: []
+  };
+  componentWillMount() {
+    $.ajax({
+      url: Api.groupList,
+      dataType: 'json',
+      type: 'GET',
+      success: res => {
+        this.setState({
+          groupList: $.parseJSON(res.result)
+        })
+      },
+      error: (res, textStatus) => {
+        notification['error']({
+          message: '请求失败',
+          description: '返回值:' + res.result,
+        });
+      }
+    });
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
-      console.log(values);
       if (!err) {
         $.ajax({
           url: Api.setSubSystemPara,
@@ -75,7 +95,13 @@ class MemCom extends React.Component {
               required: true, message: 'Please input your Group Path!',
             }],
           })(
-            <Input/>,
+            <Select placeholder="Please select a country">
+              {
+                _.map(this.state.groupList, (value) => {
+                  return <Select.Option value={value}>{value}</Select.Option>
+                })
+              }
+            </Select>
           )}
         </FormItem>
         <FormItem
@@ -237,7 +263,14 @@ class MemPara extends React.Component {
     return (
       <Row gutter={0}>
         <Col span={18} offset={3}>
-          <Card title="Memory子系统" bordered={true}>
+          <Card title="Memory子系统"
+                extra={
+                  <Row>
+                    <Col span={24} offset={0}>
+                      <Alert message="memory 子系统自动生成 cgroup 任务使用内存资源的报告，并限定这些任务所用内存的大小" type="info" showIcon/>
+                    </Col>
+                  </Row>
+                } bordered={true}>
             <MemForm/>
           </Card>
         </Col>

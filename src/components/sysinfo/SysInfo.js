@@ -12,8 +12,8 @@ class EchartsCpu extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      cpu: 50,
-      mem: 50,
+      cpu: 0,
+      mem: 0,
     };
   }
   componentWillUnmount() {
@@ -27,8 +27,12 @@ class EchartsCpu extends React.Component {
         type: 'GET',
         success: res => {
           let info = $.parseJSON(res.result);
+          let cpuRate =  parseFloat(info.cpuUserUse) + parseFloat(info.cpuSysUse)
+          if (cpuRate > 100) {
+            cpuRate = 100
+          }
           this.setState({
-            cpu: parseFloat((parseFloat(info.cpuUserUse) + parseFloat(info.cpuSysUse)).toFixed(2)),
+            cpu: parseFloat((cpuRate).toFixed(2)),
             mem: parseFloat(info.memRate)
           });
         },
@@ -56,7 +60,7 @@ class EchartsCpu extends React.Component {
           feature : {
             mark : {show: true},
             restore : {show: false},
-            saveAsImage : {show: true}
+            saveAsImage : {show: false}
           }
         },
         series : [
@@ -81,7 +85,7 @@ class EchartsCpu extends React.Component {
           feature : {
             mark : {show: true},
             restore : {show: false},
-            saveAsImage : {show: true}
+            saveAsImage : {show: false}
           }
         },
         series : [

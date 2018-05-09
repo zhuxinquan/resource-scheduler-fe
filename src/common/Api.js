@@ -8,6 +8,9 @@ const Api = {
   setAgentIp : '/agent/cgroup/set/ip',
   newGroup: '/agent/cgroup/new',
   setSubSystemPara: '/agent/metric/set',
+  execCmd: '/agent/cgroup/exec',
+  deleteGroup: '/agent/cgroup/delete',
+  groupList: '/agent/cgroup/path/list',
 
 };
 
