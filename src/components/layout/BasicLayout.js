@@ -87,8 +87,8 @@ class BasicLayout extends React.Component {
               <Menu.Item key="cpu"><a href={"/#/subsystem/cpu"}>Cpu</a></Menu.Item>
               <Menu.Item key="memory"><a href={"/#/subsystem/memory"}>Memory</a></Menu.Item>
               <Menu.Item key="blkio"><a href={"/#/subsystem/blkio"}>Blkio</a></Menu.Item>
-              <Menu.Item key="cpuset"><a href={"/#/subsystem/cpuset"}>Cpuset</a></Menu.Item>
-              <Menu.Item key="devices"><a href={"/#/subsystem/devices"}>Devices</a></Menu.Item>
+              {/*<Menu.Item key="cpuset"><a href={"/#/subsystem/cpuset"}>Cpuset</a></Menu.Item>*/}
+              {/*<Menu.Item key="devices"><a href={"/#/subsystem/devices"}>Devices</a></Menu.Item>*/}
             </SubMenu>
             <Menu.Item key="exec"><a href={'/#/exec'}><Icon type="codepen" />执行服务</a></Menu.Item>
             <Menu.Item key="dashboard"><a href={'/#/sys/monitor'}><Icon type="dashboard" />系统监控</a></Menu.Item>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Col, Form, Row, Input, Tooltip, Icon, Button } from 'antd';
+import { Card, Col, Form, Row, Input, Tooltip, Icon, Button, InputNumber } from 'antd';
 import Api from '../../common/Api';
 import { notification } from 'antd/lib/index';
 
@@ -65,16 +65,14 @@ class NewGroupFormCom extends React.Component {
       <Form onSubmit={this.handleSubmit}>
         <FormItem
           {...formItemLayout}
-          label="Path"
+          label="Group名称"
         >
           {getFieldDecorator('groupPath', {
             rules: [{
-              type: 'string', message: 'The input is not valid E-mail!',
-            }, {
-              required: true, message: 'Please input your Group Path!',
+              required: true, message: '请输入Group名称',
             }],
           })(
-            <Input />
+            <Input placeholder={'全局唯一，尽可能填写有区分度的名称，如: username-service'} />
           )}
         </FormItem>
         <FormItem
@@ -91,7 +89,24 @@ class NewGroupFormCom extends React.Component {
           {getFieldDecorator('subSystems', {
             rules: [{ required: true, message: '请输入子系统列表,以\',\'分隔', whitespace: true }],
           })(
-            <Input />
+            <Input placeholder={'请输入子系统列表,以\',\'分隔'}/>
+          )}
+        </FormItem>
+        <FormItem
+          {...formItemLayout}
+          label={(
+            <span>
+              Group权重(1-10)&nbsp;
+              <Tooltip title="Group需要关联的子系统">
+                <Icon type="question-circle-o" />
+              </Tooltip>
+            </span>
+          )}
+        >
+          {getFieldDecorator('weight', {
+            rules: [{ required: true, message: '请输入Group权重，初始资源将按Group权重进行分配', whitespace: true }],
+          })(
+            <Input placeholder={'请输入Group权重，初始资源将按Group权重进行分配'} />
           )}
         </FormItem>
         <FormItem {...tailFormItemLayout}>

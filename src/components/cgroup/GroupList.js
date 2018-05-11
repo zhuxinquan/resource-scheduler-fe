@@ -45,7 +45,7 @@ class GroupList extends React.Component {
   };
   getColumns = () => {
     const columns = [{
-      title: 'Group 路径',
+      title: 'Group名称',
       dataIndex: 'groupPath',
     }, {
       title: '子系统列表',
@@ -57,7 +57,7 @@ class GroupList extends React.Component {
       title: '操作',
       render: (text, record) => {
         return (
-          <Popconfirm title="确定删除该Group？删除时该Group所有进程被Kill，子Group被删除！" onConfirm={(e) => this.confirm(record.groupPath)}
+          <Popconfirm title="确定删除该Group？删除时该Group所有进程被Kill！" onConfirm={(e) => this.confirm(record.groupPath)}
                       onCancel={this.cancel}>
             <a>删除</a>
           </Popconfirm>
@@ -86,9 +86,7 @@ class GroupList extends React.Component {
 
   render() {
     return (
-      <Card title="Group列表" extra={
-        <Alert message="/rs路径为默认起始路径" type="info" showIcon/>
-      } bordered={true}>
+      <Card title="Group列表" bordered={true}>
         <Table bordered={true} rowKey={record => record.groupPath} columns={this.getColumns()}
                dataSource={this.state.groupInfo}/>
       </Card>

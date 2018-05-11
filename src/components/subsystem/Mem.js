@@ -86,22 +86,22 @@ class MemCom extends React.Component {
       <Form onSubmit={this.handleSubmit}>
         <FormItem
           {...formItemLayout}
-          label="Path"
+          label="Group名称"
         >
           {getFieldDecorator('groupPath', {
             rules: [{
-              type: 'string', message: 'Please input your Group Path!',
+              type: 'string', message: '请输入Group名称!',
             }, {
-              required: true, message: 'Please input your Group Path!',
+              required: true, message: '请输入Group名称!',
             }],
           })(
-            <Select placeholder="Please select a country">
+            <Select placeholder="请选择一个Group">
               {
                 _.map(this.state.groupList, (value) => {
-                  return <Select.Option value={value}>{value}</Select.Option>
+                  return <Select.Option value={value}>{value}</Select.Option>;
                 })
               }
-            </Select>
+            </Select>,
           )}
         </FormItem>
         <FormItem
