@@ -39,7 +39,7 @@ class SetIp extends React.Component {
       error: (res, textStatus) => {
           notification['error']({
             message: '请求失败',
-            description: '返回码:'+res.status + ';返回值:'+res.responseText,
+            description: '返回值:' + res.responseJSON.result,
           });
       },
       complete: (jqXHR, textStatus) => {

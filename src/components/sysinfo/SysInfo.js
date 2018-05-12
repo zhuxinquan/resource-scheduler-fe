@@ -27,7 +27,7 @@ class EchartsCpu extends React.Component {
         type: 'GET',
         success: res => {
           let info = $.parseJSON(res.result);
-          let cpuRate =  parseFloat(info.cpuUserUse) + parseFloat(info.cpuSysUse)
+          let cpuRate =  parseFloat(info.cpuUserUse) + parseFloat(info.cpuSysUse);
           if (cpuRate > 100) {
             cpuRate = 100
           }
@@ -39,13 +39,13 @@ class EchartsCpu extends React.Component {
         error: (res, textStatus) => {
           notification['error']({
             message: '请求失败',
-            description: '返回码:' + res.status + ';返回值:' + res.responseText,
+            description: '返回值:' + res.responseJSON.result,
           });
         }
       });
       // 基于准备好的dom，初始化echarts实例
-      var cpuChart = echarts.init(document.getElementById('echarts-cpu'));
-      var memChart = echarts.init(document.getElementById('echarts-mem'));
+      let cpuChart = echarts.init(document.getElementById('echarts-cpu'));
+      let memChart = echarts.init(document.getElementById('echarts-mem'));
       // 绘制图表
       cpuChart.setOption({
         tooltip: {

@@ -29,7 +29,7 @@ class NewGroupFormCom extends React.Component {
           error: (res, textStatus) => {
             notification['error']({
               message: '请求失败',
-              description: '返回值:' + res.result,
+              description: '返回值:' + res.responseJSON.result,
             });
           }
         });

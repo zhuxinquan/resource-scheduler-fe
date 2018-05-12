@@ -11,6 +11,7 @@ const Api = {
   execCmd: '/agent/cgroup/exec',
   deleteGroup: '/agent/cgroup/delete',
   groupList: '/agent/cgroup/path/list',
+  getProcessInfo: '/agent/cgroup/process/info',
 
 };
 

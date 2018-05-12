@@ -13,6 +13,7 @@ import Cpuset from '../subsystem/Cpuset';
 import Devices from '../subsystem/Devices';
 import SysMonitor from '../sysinfo/SysMonitor';
 import Exec from '../exec/Exec';
+import Top from '../sysinfo/Top';
 
 const SubMenu = Menu.SubMenu;
 const {Header, Content, Footer} = Layout;
@@ -91,6 +92,7 @@ class BasicLayout extends React.Component {
               {/*<Menu.Item key="devices"><a href={"/#/subsystem/devices"}>Devices</a></Menu.Item>*/}
             </SubMenu>
             <Menu.Item key="exec"><a href={'/#/exec'}><Icon type="codepen" />执行服务</a></Menu.Item>
+            <Menu.Item key="process"><a href={'/#/sys/process'}><Icon type="table" />进程信息</a></Menu.Item>
             <Menu.Item key="dashboard"><a href={'/#/sys/monitor'}><Icon type="dashboard" />系统监控</a></Menu.Item>
             <Menu.Item key="changIp" style={{float:'right'}}><Icon type="logout" />切换IP</Menu.Item>
           </Menu>
@@ -107,6 +109,7 @@ class BasicLayout extends React.Component {
               <Route path='/subsystem/cpuset' exact component={Cpuset}/>
               <Route path='/subsystem/devices' exact component={Devices}/>
               <Route path='/sys/monitor' exact component={SysMonitor}/>
+              <Route path='/sys/process' exact component={Top}/>
               <Route path='/exec' exact component={Exec}/>
             </Switch>
           </div>
@@ -114,7 +117,7 @@ class BasicLayout extends React.Component {
             <SetIp ref='setIp'/>
           </div>
         </Content>
-        <Footer style={{textAlign: 'center'}}>
+        <Footer style={{textAlign: 'center', padding: '10px 50px'}}>
           Resource-Scheduler ©2018 Created By zxq
         </Footer>
       </Layout>

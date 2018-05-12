@@ -36,7 +36,7 @@ class GroupList extends React.Component {
       error: (res, textStatus) => {
         notification['error']({
           message: '请求失败',
-          description: '返回值:' + res.responseText,
+          description: '返回值:' + res.responseJSON.result,
         });
       },
     });
@@ -47,6 +47,12 @@ class GroupList extends React.Component {
     const columns = [{
       title: 'Group名称',
       dataIndex: 'groupPath',
+    }, {
+      title: '权重(1 - 10)',
+      dataIndex: 'weight',
+      // render: (text, record) => {
+      //   return _.join(text, ',');
+      // },
     }, {
       title: '子系统列表',
       dataIndex: 'subSystems',
@@ -78,7 +84,7 @@ class GroupList extends React.Component {
       error: (res, textStatus) => {
         notification['error']({
           message: '请求失败',
-          description: '返回值:' + res.responseText,
+          description: '返回值:' + res.responseJSON.result,
         });
       },
     });

@@ -27,6 +27,12 @@ class Home extends React.Component {
       title: 'Group 路径',
       dataIndex: 'groupPath',
     }, {
+      title: '权重(1 - 10)',
+      dataIndex: 'weight',
+      // render: (text, record) => {
+      //   return _.join(text, ',');
+      // },
+    },  {
       title: '子系统列表',
       dataIndex: 'subSystems',
       render:  (text, record) => {
@@ -47,7 +53,7 @@ class Home extends React.Component {
       error: (res, textStatus) => {
         notification['error']({
           message: '请求失败',
-          description: '返回码:' + res.status + ';返回值:' + res.responseText,
+          description: '返回值:' + res.responseJSON.result,
         });
       }
     });
